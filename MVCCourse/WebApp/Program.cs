@@ -20,7 +20,7 @@ namespace WebApp
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseStaticFiles();   //locate the static file such as bootstrap.css
 
             app.UseRouting();
 
