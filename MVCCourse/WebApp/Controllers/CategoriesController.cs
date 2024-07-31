@@ -13,6 +13,8 @@ namespace WebApp.Controllers
 
         public IActionResult Edit(int? id)
         {
+            ViewBag.Action = "edit";
+
             var category = CategoriesRepository.GetCategoryById(id.HasValue?id.Value:0);
 
             return View(category);
@@ -33,7 +35,9 @@ namespace WebApp.Controllers
 
         public IActionResult Add()
         {
-            return View();
+			ViewBag.Action = "add";
+
+			return View(new Category());
         }
 
         [HttpPost]
@@ -49,9 +53,10 @@ namespace WebApp.Controllers
 		}
 
         public IActionResult Delete(int categoryId)
-        { 
-            CategoriesRepository.DeleteCategory(categoryId);
-            return RedirectToAction(nameof(Index));
-        }
+        {
+			CategoriesRepository.DeleteCategory(categoryId);
+
+			return RedirectToAction(nameof(Index));
+		}
 	}
 }
